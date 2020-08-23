@@ -1,0 +1,379 @@
+<html>
+    <title>BeingWise Framework</title>
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+        .jumbotron {
+        background-image: url('images/womenep.jpg');
+        background-size: cover;
+        height: 40%;
+        }
+    </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type ="text/javascript">
+        window.onload = function() {
+        
+            function evaluateresults() {
+               
+            }
+        
+        }
+
+    
+    </script>
+    <script>
+
+        $(document).ready(
+            function() {
+                const $q1valueSpan = $('.q1valueSpan');
+                const $q1value = $('#q1slider');
+                $q1valueSpan.html($q1value.val());
+                $q1value.on('input change', () => {
+                        $q1valueSpan.html($q1value.val());
+                        });
+
+                const $q2valueSpan = $('.q2valueSpan');
+                const $q2value = $('#q2slider');
+                $q2valueSpan.html($q2value.val());
+                $q2value.on('input change', () => {
+                        $q2valueSpan.html($q2value.val());
+                        });
+
+                const $q3valueSpan = $('.q3valueSpan');
+                const $q3value = $('#q3slider');
+                $q3valueSpan.html($q3value.val());
+                $q3value.on('input change', () => {
+                        $q3valueSpan.html($q3value.val());
+                        });
+
+                const $q4valueSpan = $('.q4valueSpan');
+                const $q4value = $('#q4slider');
+                $q4valueSpan.html($q4value.val());
+                $q4value.on('input change', () => {
+                        $q4valueSpan.html($q4value.val());
+                        });
+
+                const $q6valueSpan = $('.q6valueSpan');
+                const $q6value = $('#q6slider');
+                $q6valueSpan.html($q6value.val());
+                $q6value.on('input change', () => {
+                        $q6valueSpan.html($q6value.val());
+                        });
+
+                const $q7valueSpan = $('.q7valueSpan');
+                const $q7value = $('#q7slider');
+                $q7valueSpan.html($q7value.val());
+                $q7value.on('input change', () => {
+                        $q7valueSpan.html($q7value.val());
+                        });
+
+                const $q8valueSpan = $('.q8valueSpan');
+                const $q8value = $('#q8slider');
+                $q8valueSpan.html($q8value.val());
+                $q8value.on('input change', () => {
+                        $q8valueSpan.html($q8value.val());
+                        });
+                });
+            function evaluateresults() {
+                const $q1inputvalue = $('#q1slider').val();
+                const $q2inputvalue = $('#q2slider').val();
+                const $q3inputvalue = $('#q3slider').val();
+                const $q4inputvalue = $('#q4slider').val();
+                const $q5inputvalue = $("input[name='optradio']:checked").val();
+                const $q6inputvalue = $('#q6slider').val();
+                const $q7inputvalue = $('#q7slider').val();
+                const $q8inputvalue = $('#q8slider').val();
+                
+                // For Question1 Logic
+                if ($q1inputvalue > 20 && !($q1inputvalue > 30)) {
+                    $('#q1result').empty()
+                    $('#q2result').html("SILVER");
+                    $('#q1result').append("<br/><img id='i' class='img-responsive' src='images/silver.png' alt='SILVER' style='height: 70; width: 70;'/>");
+                } else if ($q1inputvalue > 30 && !($q1inputvalue > 40)) {
+                    $('#q1result').empty()
+                    $('#q1result').html("GOLD");
+                    $('#q1result').append("<br/><img id='i' class='img-responsive' src='images/gold.png' alt='GOLD' style='height: 70; width: 70;'/>");                    
+                } else if ($q1inputvalue > 40) {
+                    $('#q1result').empty()
+                    $('#q1result').html(" PLATINUM");
+                    $('#q1result').append("<br/><img id='i' class='img-responsive' src='images/platinum.png' alt='PLATINUM' style='height: 70; width: 70;' />");                    
+                } else {
+                    $('#q1result').empty()
+                    $('#q1result').html("You are below SILVER");
+                }
+
+                // For question2 Logic
+                if ($q2inputvalue > 5 && !($q2inputvalue > 7)) {                    
+                    $('#q2result').empty()
+                    $('#q2result').html("SILVER");
+                    $('#q2result').append("<br/><img id='i' class='img-responsive' src='images/silver.png' alt='SILVER' style='height: 70; width: 70;'/>");
+                } else if ($q2inputvalue > 7 && !($q2inputvalue > 10)) {
+                    $('#q2result').empty()
+                    $('#q2result').html("GOLD");
+                    $('#q2result').append("<br/><img id='i' class='img-responsive' src='images/gold.png' alt='GOLD' style='height: 70; width: 70;'/>");
+                } else if ($q2inputvalue > 10) {
+                    $('#q2result').empty()
+                    $('#q2result').html(" PLATINUM");
+                    $('#q2result').append("<br/><img id='i' class='img-responsive' src='images/platinum.png' alt='PLATINUM' style='height: 70; width: 70;' />");
+                } else {
+                    $('#q2result').empty()
+                    $('#q2result').html("You are below SILVER");
+                }
+
+                // For question3 Logic
+                if ($q3inputvalue > 10 && !($q3inputvalue > 20)) {
+                    $('#q3result').empty()
+                    $('#q3result').html("SILVER");
+                    $('#q2result').append("<br/><img id='i' class='img-responsive' src='images/silver.png' alt='SILVER' style='height: 70; width: 70;'/>");
+                } else if ($q3inputvalue > 20 && !($q3inputvalue > 30)) {
+                    $('#q3result').empty()
+                    $('#q3result').html("GOLD");
+                    $('#q3result').append("<br/><img id='i' class='img-responsive' src='images/gold.png' alt='GOLD' style='height: 70; width: 70;'/>");
+                } else if ($q3inputvalue > 30) {
+                    $('#q3result').empty()
+                    $('#q3result').html("PLATINUM");
+                    $('#q3result').append("<br/><img id='i' class='img-responsive' src='images/platinum.png' alt='PLATINUM' style='height: 70; width: 70;' />");
+                } else {
+                    $('#q3result').empty()
+                    $('#q3result').html("You are below SILVER");
+                }
+
+                // For question4 Logic
+                if ($q4inputvalue > 50 && !($q4inputvalue > 70)) {
+                    $('#q4result').empty()
+                    $('#q4result').html("SILVER");
+                    $('#q4result').append("<br/><img id='i' class='img-responsive' src='images/silver.png' alt='SILVER' style='height: 70; width: 70;'/>");
+                } else if ($q4inputvalue > 70 && !($q4inputvalue > 90)) {
+                    $('#q4result').empty()
+                    $('#q4result').html("GOLD");
+                    $('#q3result').append("<br/><img id='i' class='img-responsive' src='images/gold.png' alt='GOLD' style='height: 70; width: 70;'/>");
+                } else if ($q4inputvalue > 90) {
+                    $('#q4result').empty()
+                    $('#q4result').html("PLATINUM");
+                    $('#q4result').append("<br/><img id='i' class='img-responsive' src='images/platinum.png' alt='PLATINUM' style='height: 70; width: 70;' />");
+                } else {
+                    $('#q4result').empty()
+                    $('#q4result').html("You are below SILVER");
+                }
+                
+                // For question5 Logic
+                if ($q5inputvalue == "Total Compliance") {
+                    $('#q5result').empty()
+                    $('#q5result').html("SILVER");
+                    $('#q5result').append("<br/><img id='i' class='img-responsive' src='images/silver.png' alt='SILVER' style='height: 70; width: 70;'/>");
+                } else if ($q5inputvalue == "Above/Beyond") {
+                    $('#q5result').empty()
+                    $('#q5result').html("GOLD");
+                    $('#q5result').append("<br/><img id='i' class='img-responsive' src='images/gold.png' alt='GOLD' style='height: 70; width: 70;'/>");
+                } else if ($q5inputvalue == "Role Model") {
+                    $('#q5result').empty()
+                    $('#q5result').html("PLATINUM");
+                    $('#q4result').append("<br/><img id='i' class='img-responsive' src='images/platinum.png' alt='PLATINUM' style='height: 70; width: 70;' />");
+                }
+
+                // For question6 Logic
+                if ($q6inputvalue > 5 && !($q4inputvalue > 10)) {
+                    $('#q6result').empty()
+                    $('#q6result').html("SILVER");
+                    $('#q6result').append("<br/><img id='i' class='img-responsive' src='images/silver.png' alt='SILVER' style='height: 70; width: 70;'/>");
+                } else if ($q6inputvalue > 10 && !($q4inputvalue > 20)) {
+                    $('#q6result').empty()
+                    $('#q6result').html("GOLD");
+                    $('#q6result').append("<br/><img id='i' class='img-responsive' src='images/gold.png' alt='GOLD' style='height: 70; width: 70;'/>");
+                } else if ($q6inputvalue > 20) {
+                    $('#q6result').empty()
+                    $('#q6result').html("PLATINUM");
+                    $('#q6result').append("<br/><img id='i' class='img-responsive' src='images/platinum.png' alt='PLATINUM' style='height: 70; width: 70;' />");
+                } else {
+                    $('#q6result').empty()
+                    $('#q6result').html("You are below SILVER");
+                }
+
+
+                 // For question7 Logic
+                if ($q7inputvalue > 3 && !($q7inputvalue > 10)) {
+                    $('#q7result').empty()
+                    $('#q7result').html("SILVER");
+                    $('#q7result').append("<br/><img id='i' class='img-responsive' src='images/silver.png' alt='SILVER' style='height: 70; width: 70;'/>");
+                } else if ($q7inputvalue > 10 && !($q7inputvalue > 15)) {
+                    $('#q7result').empty()
+                    $('#q7result').html("GOLD");
+                    $('#q7result').append("<br/><img id='i' class='img-responsive' src='images/gold.png' alt='GOLD' style='height: 70; width: 70;'/>");
+                } else if ($q6inputvalue > 15) {
+                    $('#q7result').empty()
+                    $('#q7result').html("PLATINUM");
+                    $('#q7result').append("<br/><img id='i' class='img-responsive' src='images/platinum.png' alt='PLATINUM' style='height: 70; width: 70;' />");
+                } else {
+                    $('#q7result').empty()
+                    $('#q7result').html("You are below SILVER");
+                }
+                
+                
+                 // For question8 Logic
+                if ($q8inputvalue > 5 && !($q8inputvalue > 10)) {
+                    $('#q8result').empty()
+                    $('#q8result').html("SILVER");
+                    $('#q8result').append("<br/><img id='i' class='img-responsive' src='images/silver.png' alt='SILVER' style='height: 70; width: 70;'/>");
+                } else if ($q8inputvalue > 10 && !($q8inputvalue > 20)) {
+                    $('#q8result').empty()
+                    $('#q8result').html("GOLD");
+                    $('#q8result').append("<br/><img id='i' class='img-responsive' src='images/gold.png' alt='GOLD' style='height: 70; width: 70;'/>");
+                } else if ($q8inputvalue > 20) {
+                    $('#q8result').empty()
+                    $('#q8result').html("PLATINUM");
+                    $('#q8result').append("<br/><img id='i' class='img-responsive' src='images/platinum.png' alt='PLATINUM' style='height: 70; width: 70;' />");
+                } else {
+                    $('#q8result').empty()
+                    $('#q8result').html("You are below SILVER");
+                }
+                
+            };
+   </script>
+</head>
+<body>    
+    <nav class="navbar fixed-top navbar-light bg-light">
+        <a class="navbar-brand" href="#"><img src="images/logo.png"></a>        
+      </nav>   
+    
+    <div class="jumbotron" style="color: brown">
+        <center> <h1>BeingWISE-R (Ready) Framework</h1></center>        
+    </div>      
+    <div id="questionsdb" class="container">
+    <hr style='border: 1px solid rgb(128, 0, 0);  border-radius: 1px;'>
+    <div id="q1" class="row justify-content-md-center">
+        <div class="col-sm-8" style="background-color:none;">
+            <b><p  class="lead"> 1. % of women in tech workforce in your company Retention of women at par with general EE population at all levels </p></b>
+        </div>
+        <div class="col-sm-2" style="background-color:lavenderblush;">            
+            <input id="q1slider" class="" type="range" min="0" max="100" value="0" />
+            <span class="font-weight-bold text-primary lead q1valueSpan"></span>            
+        </div>
+        <div class="col-sm-2" style="background-color:none;" id="q1result"></div>    
+    </div>
+    
+    <hr style='border: 1px solid rgb(128, 0, 0);  border-radius: 1px;'>
+    
+    <div id="q2" class="row justify-content-md-center">
+        <div class="col-sm-8" style="background-color:none;">
+            <b><p  class="lead"> 2. Back to Work program --% of women hires/ retention at par with overall retention </p></b>
+        </div>
+        <div class="col-sm-2" style="background-color:lavenderblush;">            
+            <input id="q2slider" class="border-0" type="range" min="0" max="100" value="0" />
+            <span class="font-weight-bold text-primary lead q2valueSpan"></span>            
+        </div>
+        <div class="col-sm-2" style="background-color:none;" id="q2result"></div>
+    </div>
+    
+    <hr style='border: 1px solid rgb(128, 0, 0);  border-radius: 1px;'>
+
+    <div id="q3" class="row justify-content-md-center">
+        <div class="col-sm-8" style="background-color:none;">
+            <b><p  class="lead"> 3. % of women on company board/ top leadership positions    </p></b>
+        </div>    
+        <div class="col-sm-2" style="background-color:lavenderblush;"> 
+            <input id="q3slider" class="border-0" type="range" min="0" max="100" value="0"/>
+            <span class="font-weight-bold text-primary lead q3valueSpan"></span>            
+        </div>
+        <div class="col-sm-2" style="background-color:none;" id="q3result"></div>
+    </div>
+
+    <hr style='border: 1px solid rgb(128, 0, 0);  border-radius: 1px;'>
+    
+    <div id="q4" class="row justify-content-md-center">
+
+        <div class="col-sm-8" style="background-color:none;">
+            <b><p  class="lead">4. % of leaders trained in BeingWISE LGBTQ PWD</p></b>
+        </div>       
+        <div class="col-sm-2" style="background-color:lavenderblush;">    
+            <input id="q4slider" class="border-0" type="range" min="0" max="100" value="0"/>
+            <span class="font-weight-bold text-primary lead q4valueSpan"></span>    
+        </div>
+        <div class="col-sm-2" style="background-color:none;" id="q4result"></div>
+    </div>
+    
+    <hr style='border: 1px solid rgb(128, 0, 0);  border-radius: 1px;'>
+    
+    <div id="q5" class="row justify-content-md-center">
+        <div class="col-sm-8" style="background-color:none;">
+            <b><p  class="lead">5. Meeting Basic Compliances Maternity leave, Crèche, Security after 8pm</p></b>
+        </div>
+        <div class="col-sm-2" style="background-color:lavenderblush;">
+            <form>
+                <div class="radio">
+                <label><input type="radio"  class="lead" name="optradio" checked value="Total Compliance">Total Compliance</label>
+                </div>
+                <div class="radio">
+                <label><input type="radio"  class="lead" name="optradio" value="Above/Beyond">Above/Beyond
+                    compliance</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio"  class="lead" name="optradio" value="Role Model">Role Model</label>
+                </div>            
+            </form>
+        </div>
+        <div class="col-sm-2" style="background-color:none;" id="q5result"></div>
+    </div>
+    
+    <hr style='border: 1px solid rgb(128, 0, 0);  border-radius: 1px;'>
+    
+    <div id="q6" class="row justify-content-md-center">
+        <div class="col-sm-8" style="background-color:none;">
+            <b><p  class="lead">6. Women led vendors in supply chain --% of business given to them</p></b>
+        </div>
+        <div class="col-sm-2" style="background-color:lavenderblush;">
+            <input id="q6slider" class="border-0" type="range" min="0" max="100" value="0"/>
+            <span class="font-weight-bold text-primary lead q6valueSpan"></span>    
+        </div>
+        <div class="col-sm-2" style="background-color:none;" id="q6result"></div>
+    </div>
+    
+    <hr style='border: 1px solid rgb(128, 0, 0);  border-radius: 1px;'>
+    
+    <div id="q7" class="row justify-content-md-center">
+        <div class="col-sm-8" style="background-color:none;">
+            <b><p  class="lead">7. Women led vendors in supply chain --% of business given to them</p></b>
+        </div>
+        <div class="col-sm-2" style="background-color:lavenderblush;">
+            <input id="q7slider" class="border-0" type="range" min="0" max="100" value="0"/>
+            <span class="font-weight-bold text-primary lead q7valueSpan"></span>
+        </div>
+        <div class="col-sm-2" style="background-color:none;" id="q7result"></div>
+    </div>
+    
+    <hr style='border: 1px solid rgb(128, 0, 0);  border-radius: 1px;'>
+    
+    <div id="q8" class="row justify-content-md-center">
+        <div class="col-sm-8" style="background-color:none;">
+            <b><p  class="lead">
+                8. Pipeline Building
+                    •   Girls/ w omen trained in STEM --% of your total workforce School Level
+                    •   -% Technical women researchers Higher Education
+            </p></b>
+        </div>
+        <div class="col-sm-2" style="background-color:lavenderblush;">
+            <input id="q8slider" class="border-0" type="range" min="0" max="100" value="0"/>
+            <span class="font-weight-bold text-primary lead q8valueSpan"></span>
+        </div>
+        <div class="col-sm-2" style="background-color:none;" id="q8result"></div>
+    </div>
+
+
+    
+    <center>
+    <button id="submit" class="btn btn-primary btn-lg" onclick="evaluateresults()">Show my Results</button>
+    </center>
+
+
+</div>
+
+<footer class="footer">
+    <div class="container">
+      <span class="text-muted">© 2020 Copyright: BeingWISE</span>
+    </div>
+  </footer>    
+  <!-- Footer -->
+</body>
+</html>
