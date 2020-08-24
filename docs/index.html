@@ -175,11 +175,11 @@
                 }
 
                 // For question6 Logic
-                if ($q6inputvalue > 5 && !($q4inputvalue > 10)) {
+                if ($q6inputvalue > 5 && !($q6inputvalue > 10)) {
                     $('#q6result').empty()
                     $('#q6result').html("SILVER");
                     $('#q6result').append("<br/><img id='i' class='img-responsive' src='images/silver.png' alt='SILVER' style='height: 70; width: 70;'/>");
-                } else if ($q6inputvalue > 10 && !($q4inputvalue > 20)) {
+                } else if ($q6inputvalue > 10 && !($q6inputvalue > 20)) {
                     $('#q6result').empty()
                     $('#q6result').html("GOLD");
                     $('#q6result').append("<br/><img id='i' class='img-responsive' src='images/gold.png' alt='GOLD' style='height: 70; width: 70;'/>");
@@ -202,7 +202,7 @@
                     $('#q7result').empty()
                     $('#q7result').html("GOLD");
                     $('#q7result').append("<br/><img id='i' class='img-responsive' src='images/gold.png' alt='GOLD' style='height: 70; width: 70;'/>");
-                } else if ($q6inputvalue > 15) {
+                } else if ($q7inputvalue > 15) {
                     $('#q7result').empty()
                     $('#q7result').html("PLATINUM");
                     $('#q7result').append("<br/><img id='i' class='img-responsive' src='images/platinum.png' alt='PLATINUM' style='height: 70; width: 70;' />");
