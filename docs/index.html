@@ -6,10 +6,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <style>
+        
         .jumbotron {
-        background-image: url('images/womenep.jpg');
-        background-size: cover;
-        height: 40%;
+            background:
+radial-gradient(black 15%, transparent 16%) 0 0,
+radial-gradient(black 15%, transparent 16%) 8px 8px,
+radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+background-color:#282828;
+background-size:16px 16px;
+        height: 50%;
         }
     </style>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -76,7 +82,17 @@
                 $q8value.on('input change', () => {
                         $q8valueSpan.html($q8value.val());
                         });
+                
+                const $q9valueSpan = $('.q9valueSpan');
+                const $q9value = $('#q9slider');
+                $q9valueSpan.html($q9value.val());
+                $q9value.on('input change', () => {
+                        $q9valueSpan.html($q9value.val());
+                        });
+
                 });
+
+                
             function evaluateresults() {
                 const $q1inputvalue = $('#q1slider').val();
                 const $q2inputvalue = $('#q2slider').val();
@@ -86,6 +102,7 @@
                 const $q6inputvalue = $('#q6slider').val();
                 const $q7inputvalue = $('#q7slider').val();
                 const $q8inputvalue = $('#q8slider').val();
+                const $q9inputvalue = $('#q9slider').val();
                 
                 // For Question1 Logic
                 if ($q1inputvalue > 20 && !($q1inputvalue > 30)) {
@@ -229,138 +246,185 @@
                     $('#q8result').empty()
                     $('#q8result').html("You are below SILVER");
                 }
+
+                // For question9 Logic
+                if ($q9inputvalue > 5 && !($q9inputvalue > 10)) {
+                    $('#q9result').empty()
+                    $('#q9result').html("SILVER");
+                    $('#q9result').append("<br/><img id='i' class='img-responsive' src='images/silver.png' alt='SILVER' style='height: 70; width: 70;'/>");
+                } else if ($q9inputvalue > 10 && !($q9inputvalue > 20)) {
+                    $('#q9result').empty()
+                    $('#q9result').html("GOLD");
+                    $('#q9result').append("<br/><img id='i' class='img-responsive' src='images/gold.png' alt='GOLD' style='height: 70; width: 70;'/>");
+                } else if ($q9inputvalue > 20) {
+                    $('#q9result').empty()
+                    $('#q9result').html("PLATINUM");
+                    $('#q9result').append("<br/><img id='i' class='img-responsive' src='images/platinum.png' alt='PLATINUM' style='height: 70; width: 70;' />");
+                } else {
+                    $('#q9result').empty()
+                    $('#q9result').html("You are below SILVER");
+                }
                 
             };
    </script>
 </head>
 <body>    
-    <nav class="navbar fixed-top navbar-light bg-light">
-        <a class="navbar-brand" href="#"><img src="images/logo.png"></a>        
+    <nav class="navbar fixed-top navbar-dark bg-dark">        
+        <a class="navbar-brand" href="#"><label style="color:aliceblue" class="lead">Being<b>WISE</b> - <i><b>W</b>omen <b>I</b>nnovators, <b>S</b>ocial <b>L</b>eaders</i></label></a>        
       </nav>   
     
-    <div class="jumbotron" style="color: brown">
-        <center> <h1>BeingWISE-R (Ready) Framework</h1></center>        
+    <div class="jumbotron" style="color: aliceblue">
+        <br/><br/><center><h1 class="display-4">BeingWISE-R (Ready) Framework</h1>
+            <h1 class="display-5">Self Assesment Tool</h1>
+        </center>
+
+
     </div>      
     <div id="questionsdb" class="container">
-    <hr style='border: 1px solid rgb(128, 0, 0);  border-radius: 1px;'>
+
+    <div class="row justify-content-md-center">
+        <div class="col-sm-8" style="background-color:none;">
+         Parameter   
+        </div>
+        <div class="col-sm-2" >            
+        Percentage
+        </div>
+        <div class="col-sm-2">
+        Parameter Rating
+        </div>    
+    </div>
+    <hr style='border: 1px solid rgb(0, 0, 0);  border-radius: 1px;'>
     <div id="q1" class="row justify-content-md-center">
         <div class="col-sm-8" style="background-color:none;">
-            <b><p  class="lead"> 1. % of women in tech workforce in your company Retention of women at par with general EE population at all levels </p></b>
+            <b><p  class="lead"> 1. (in%) Women in tech workforce / Total workforce  </p></b>
         </div>
-        <div class="col-sm-2" style="background-color:lavenderblush;">            
-            <input id="q1slider" class="" type="range" min="0" max="100" value="0" />
+        <div class="col-sm-2" >            
+            <input id="q1slider" class="border-0" type="range" min="0" max="100" value="0" />
             <span class="font-weight-bold text-primary lead q1valueSpan"></span>            
         </div>
         <div class="col-sm-2" style="background-color:none;" id="q1result"></div>    
-    </div>
+    </div> 
     
-    <hr style='border: 1px solid rgb(128, 0, 0);  border-radius: 1px;'>
+    <hr style='border: 1px solid rgb(0, 0, 0);  border-radius: 1px;'>
     
     <div id="q2" class="row justify-content-md-center">
         <div class="col-sm-8" style="background-color:none;">
-            <b><p  class="lead"> 2. Back to Work program --% of women hires/ retention at par with overall retention </p></b>
+            <b><p  class="lead"> 2. (in%) Back-to-work program: % of women hires / total hires </p></b>
         </div>
-        <div class="col-sm-2" style="background-color:lavenderblush;">            
+        <div class="col-sm-2" >            
             <input id="q2slider" class="border-0" type="range" min="0" max="100" value="0" />
             <span class="font-weight-bold text-primary lead q2valueSpan"></span>            
         </div>
         <div class="col-sm-2" style="background-color:none;" id="q2result"></div>
     </div>
     
-    <hr style='border: 1px solid rgb(128, 0, 0);  border-radius: 1px;'>
+    <hr style='border: 1px solid rgb(0, 0, 0);  border-radius: 1px;'>
 
     <div id="q3" class="row justify-content-md-center">
         <div class="col-sm-8" style="background-color:none;">
-            <b><p  class="lead"> 3. % of women on company board/ top leadership positions    </p></b>
+            <b><p  class="lead"> 3. (in%) Women on company board / total number of board members</p></b>
         </div>    
-        <div class="col-sm-2" style="background-color:lavenderblush;"> 
+        <div class="col-sm-2" > 
             <input id="q3slider" class="border-0" type="range" min="0" max="100" value="0"/>
             <span class="font-weight-bold text-primary lead q3valueSpan"></span>            
         </div>
         <div class="col-sm-2" style="background-color:none;" id="q3result"></div>
     </div>
 
-    <hr style='border: 1px solid rgb(128, 0, 0);  border-radius: 1px;'>
+    <hr style='border: 1px solid rgb(0, 0, 0);  border-radius: 1px;'>
     
     <div id="q4" class="row justify-content-md-center">
 
         <div class="col-sm-8" style="background-color:none;">
-            <b><p  class="lead">4. % of leaders trained in BeingWISE LGBTQ PWD</p></b>
+            <b><p  class="lead">4. (in%) Leaders trained in BeingWISE, LGBTQ, PWD (people with disability) / total number of leaders</p></b>
         </div>       
-        <div class="col-sm-2" style="background-color:lavenderblush;">    
+        <div class="col-sm-2" >    
             <input id="q4slider" class="border-0" type="range" min="0" max="100" value="0"/>
             <span class="font-weight-bold text-primary lead q4valueSpan"></span>    
         </div>
         <div class="col-sm-2" style="background-color:none;" id="q4result"></div>
     </div>
     
-    <hr style='border: 1px solid rgb(128, 0, 0);  border-radius: 1px;'>
+    <hr style='border: 1px solid rgb(0, 0, 0);  border-radius: 1px;'>
     
     <div id="q5" class="row justify-content-md-center">
         <div class="col-sm-8" style="background-color:none;">
-            <b><p  class="lead">5. Meeting Basic Compliances Maternity leave, Crèche, Security after 8pm</p></b>
+            <b><p  class="lead">5. Adherence to basic compliances such as maternity leave, crèche, security for women employees to return home after 8 pm, etc</p></b>
         </div>
-        <div class="col-sm-2" style="background-color:lavenderblush;">
+        <div class="col-sm-2" >
             <form>
                 <div class="radio">
-                <label><input type="radio"  class="lead" name="optradio" checked value="Total Compliance">Total Compliance</label>
+                <label><input type="radio"  class="lead" name="optradio" checked value="Total Compliance"> Total Compliance</label>
                 </div>
                 <div class="radio">
-                <label><input type="radio"  class="lead" name="optradio" value="Above/Beyond">Above/Beyond
+                <label><input type="radio"  class="lead" name="optradio" value="Above/Beyond"> Above/Beyond
                     compliance</label>
                 </div>
                 <div class="radio">
-                    <label><input type="radio"  class="lead" name="optradio" value="Role Model">Role Model</label>
+                    <label><input type="radio"  class="lead" name="optradio" value="Role Model"> Role Model</label>
                 </div>            
             </form>
         </div>
         <div class="col-sm-2" style="background-color:none;" id="q5result"></div>
     </div>
     
-    <hr style='border: 1px solid rgb(128, 0, 0);  border-radius: 1px;'>
+    <hr style='border: 1px solid rgb(0, 0, 0);  border-radius: 1px;'>
     
     <div id="q6" class="row justify-content-md-center">
         <div class="col-sm-8" style="background-color:none;">
-            <b><p  class="lead">6. Women led vendors in supply chain --% of business given to them</p></b>
+            <b><p  class="lead">6. (%) Business given to women-led vendors / total business given to vendors</p></b>
         </div>
-        <div class="col-sm-2" style="background-color:lavenderblush;">
+        <div class="col-sm-2" >
             <input id="q6slider" class="border-0" type="range" min="0" max="100" value="0"/>
             <span class="font-weight-bold text-primary lead q6valueSpan"></span>    
         </div>
         <div class="col-sm-2" style="background-color:none;" id="q6result"></div>
     </div>
     
-    <hr style='border: 1px solid rgb(128, 0, 0);  border-radius: 1px;'>
+    <hr style='border: 1px solid rgb(0, 0, 0);  border-radius: 1px;'>
     
     <div id="q7" class="row justify-content-md-center">
         <div class="col-sm-8" style="background-color:none;">
-            <b><p  class="lead">7. Women led vendors in supply chain --% of business given to them</p></b>
+            <b><p  class="lead">7. (Number) Women-led startups supported (like funding, mentorship, biz development)</p></b>
         </div>
-        <div class="col-sm-2" style="background-color:lavenderblush;">
+        <div class="col-sm-2" >
             <input id="q7slider" class="border-0" type="range" min="0" max="100" value="0"/>
             <span class="font-weight-bold text-primary lead q7valueSpan"></span>
         </div>
         <div class="col-sm-2" style="background-color:none;" id="q7result"></div>
     </div>
     
-    <hr style='border: 1px solid rgb(128, 0, 0);  border-radius: 1px;'>
+    <hr style='border: 1px solid rgb(0, 0, 0);  border-radius: 1px;'>
     
     <div id="q8" class="row justify-content-md-center">
         <div class="col-sm-8" style="background-color:none;">
             <b><p  class="lead">
-                8. Pipeline Building
-                    •   Girls/ w omen trained in STEM --% of your total workforce School Level
-                    •   -% Technical women researchers Higher Education
+                8. (%) Girls (school level) and women (technical researchers for higher education) trained in STEM / total workforce of the organization
             </p></b>
         </div>
-        <div class="col-sm-2" style="background-color:lavenderblush;">
+        <div class="col-sm-2" >
             <input id="q8slider" class="border-0" type="range" min="0" max="100" value="0"/>
             <span class="font-weight-bold text-primary lead q8valueSpan"></span>
         </div>
         <div class="col-sm-2" style="background-color:none;" id="q8result"></div>
     </div>
 
+    <hr style='border: 1px solid rgb(0, 0, 0);  border-radius: 1px;'>
+    
+    <div id="q9" class="row justify-content-md-center">
+        <div class="col-sm-8" style="background-color:none;">
+            <b><p class="lead"> 9. Retention of women at par with general employee population at all levels</p></b>
+        </div>
+        <div class="col-sm-2" >            
+            <input id="q9slider" class="border-0" type="range" min="0" max="100" value="0" />
+            <span class="font-weight-bold text-primary lead q9valueSpan"></span>
 
+        </div>
+        <div class="col-sm-2" style="background-color:none;" id="q9result"></div>    
+    </div>  
+
+    <hr style='border: 1px solid rgb(0, 0, 0);  border-radius: 1px;'>
+    <br/>
     
     <center>
     <button id="submit" class="btn btn-primary btn-lg" onclick="evaluateresults()">Show my Results</button>
