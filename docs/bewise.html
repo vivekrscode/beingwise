@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>BeingWise Framework</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- CSS only -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<style>
+.tooltip-inner {
+  background-color: #bdd4e7;
+  max-width: 400px;
+  background-image: linear-gradient(315deg, #bdd4e7 0%, #8693ab 74%);
+  height:200px; width: 400px;
+  text-align: justify;
+  font: 1.2em;
+  }
+  
+
+
+
+.bs-tooltip-top .arrow::before, .bs-tooltip-auto[x-placement^="top"] .arrow::before {
+  top: 0;
+  border-width: 0.4rem 0.4rem 0;
+    border-top-color: #8693ab;
+}
+
+
+.blink {
+  animation: blinker 3s linear infinite;
+}
+
+svg.banner { width: 2000%; height: auto; }
+
+@keyframes blinker {  
+  50% { opacity: 0.0; }
+}
+</style>
+<style>
+  
+  .jumbotron {
+      background:
+          radial-gradient(black 15%, transparent 16%) 0 0,
+          radial-gradient(black 15%, transparent 16%) 8px 8px,
+          radial-gradient(rgba(255, 255, 255, .1) 15%, transparent 20%) 0 1px,
+          radial-gradient(rgba(255, 255, 255, .1) 15%, transparent 20%) 8px 9px;
+      background-color: #282828;
+      background-size: 16px 16px;
+  } 
+
+  .results {
+      background: linear-gradient(315deg, transparent 75%, #575555 0)-10px 0,
+          linear-gradient(45deg, transparent 75%, #575555 0)-10px 0,
+          linear-gradient(135deg, #353333 50%, transparent 0) 0 0,
+          linear-gradient(45deg, #0f0f0f 50%, #2b2626 0) 0 0 #0f0f0f;
+      background-size: 20px 20px;
+  }
+</style>
+<script>
+    var doc = new jsPDF();
+    function generatereport() {            
+        $('#report').click(function () {
+            doc.addHTML($('body')[0], function () {
+                doc.save('bewisereport.pdf');
+            })
+        });
+
+    }
+
+</script>
+    
+<script>
+    
+    $(document).ready(
+
+
+        function () {
+            $('#report').hide();
+            
+
+            const getTwoDigits = (value) => value < 10 ? `0${value}` : value;
+
+            const formatTime = (date) => {
+            const hours = getTwoDigits(date.getHours());
+            const mins = getTwoDigits(date.getMinutes());
+            return `${hours}:${mins}`;
+            }
+
+            const $reportdate = $('#reportdate');                
+            var date = new Date();                
+            var datevalue = date.getFullYear().toString() + '-' + (date.getMonth() + 1).toString().padStart(2, 0) + '-' + date.getDate().toString().padStart(2, 0);
+            $reportdate.val(datevalue + 'T' +   formatTime(date));
+
+            const $q1valueSpan = $('.q1valueSpan');
+            const $q1value = $('#q1slider');
+            $q1valueSpan.html($q1value.val());
+            $q1value.on('input change', () => {
+                $q1valueSpan.html($q1value.val());
+            });
+
+            const $q2valueSpan = $('.q2valueSpan');
+            const $q2value = $('#q2slider');
+            $q2valueSpan.html($q2value.val());
+            $q2value.on('input change', () => {
+                $q2valueSpan.html($q2value.val());
+            });
+
+            const $q3valueSpan = $('.q3valueSpan');
+            const $q3value = $('#q3slider');
+            $q3valueSpan.html($q3value.val());
+            $q3value.on('input change', () => {
+                $q3valueSpan.html($q3value.val());
+            });
+
+            const $q4valueSpan = $('.q4valueSpan');
+            const $q4value = $('#q4slider');
+            $q4valueSpan.html($q4value.val());
+            $q4value.on('input change', () => {
+                $q4valueSpan.html($q4value.val());
+            });
+
+            const $q6valueSpan = $('.q6valueSpan');
+            const $q6value = $('#q6slider');
+            $q6valueSpan.html($q6value.val());
+            $q6value.on('input change', () => {
+                $q6valueSpan.html($q6value.val());
+            });
+
+            const $q7valueSpan = $('.q7valueSpan');
+            const $q7value = $('#q7slider');
+            $q7valueSpan.html($q7value.val());
+            $q7value.on('input change', () => {
+                $q7valueSpan.html($q7value.val());
+            });
+
+            const $q8valueSpan = $('.q8valueSpan');
+            const $q8value = $('#q8slider');
+            $q8valueSpan.html($q8value.val());
+            $q8value.on('input change', () => {
+                $q8valueSpan.html($q8value.val());
+            });
+
+        });
+
+
+  
+
+    function evaluateresults() {
+        const $q1inputvalue = $('#q1slider').val();
+        const $q2inputvalue = $('#q2slider').val();
+        const $q3inputvalue = $('#q3slider').val();
+        const $q4inputvalue = $('#q4slider').val();
+        const $q5inputvalue = $("input[name='optradio']:checked").val();
+        const $q6inputvalue = $('#q6slider').val();
+        const $q7inputvalue = $('#q7slider').val();
+        const $q8inputvalue = $('#q8slider').val();
+        const $q1binputvalue = $("input[name='optradio1']:checked").val();
+
+
+
+        // For Question1 Logic
+        if ($q1inputvalue > 20 && !($q1inputvalue > 30)) {
+            $('#q1result').empty()
+            $('#q1result').html("");
+            $q1finalvalue = 10;
+            $('#q1result').append("<br/><div class='card mb-3' style='color:#73726f;background: #E5E4E2;background: linear-gradient(to bottom, #E5E4E2 0%, #D6D5D3 100%);background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #E5E4E2), color-stop(100%, #D6D5D3));background: -webkit-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);background: -moz-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);background: -o-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);background: -ms-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#E5E4E2', endColorstr='#D6D5D3', GradientType=0);border: 1px solid #C7C6C4;box-shadow: inset 0 1px 0 #F4F3F1;-webkit-box-shadow: inset 0 1px 0 #F4F3F1;-moz-box-shadow: inset 0 1px 0 #F4F3F1;'><div class='card-body'><h5 class='card-title'>SILVER</h5></div></div>");
+        } else if ($q1inputvalue > 30 && !($q1inputvalue > 40)) {
+            $('#q1result').empty()
+            $('#q1result').html("");
+            $q1finalvalue = 15;
+            $('#q1result').append("<br/><div class='card mb-3' style='color: #fff1d1;background-color: #dab097;background-image: linear-gradient(315deg, #dab097 0%, #f1c56c 74%);'><div class='card-body'><h5 class='card-title'>GOLD</h5></div></div>");
+        } else if ($q1inputvalue > 40) {
+            $('#q1result').empty()
+            $('#q1result').html("");
+            $q1finalvalue = 20;
+            $('#q1result').append("<br/><div class='card mb-3' style='color: #d6d5d3;  background-color: #353333;background-image: linear-gradient(315deg, #353333 0%, #575555 74%);'><div class='card-body'><h5 class='card-title'>PLATINUM</h5></div></div>");
+        } else {
+            $('#q1result').empty()
+            $q1finalvalue = 0;
+            $('#q1result').html("You are below SILVER");
+        }
+
+        // For question1b Logic
+        console.log($q1binputvalue)
+        if ($q1binputvalue == "Lower") {
+            $('#q1bresult').empty()
+            $q1bfinalvalue = 0;
+            $('#q1bresult').html("You are below SILVER");
+
+        } else if ($q1binputvalue == "Same") {
+            $('#q1bresult').empty()
+            $('#q1bresult').html("");
+            $q1bfinalvalue = 10;
+            $('#q1bresult').append("<br/><div class='card mb-3' style='color:#73726f;background: #E5E4E2;background: linear-gradient(to bottom, #E5E4E2 0%, #D6D5D3 100%);background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #E5E4E2), color-stop(100%, #D6D5D3));background: -webkit-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);background: -moz-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);background: -o-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);background: -ms-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#E5E4E2', endColorstr='#D6D5D3', GradientType=0);border: 1px solid #C7C6C4;box-shadow: inset 0 1px 0 #F4F3F1;-webkit-box-shadow: inset 0 1px 0 #F4F3F1;-moz-box-shadow: inset 0 1px 0 #F4F3F1;'><div class='card-body'><h5 class='card-title'>SILVER</h5></div></div>");
+        } else if ($q1binputvalue == "10Better") {
+            $('#q1bresult').empty()
+            $('#q1bresult').html("");
+            $q1bfinalvalue = 15;
+            $('#q1bresult').append("<br/><div class='card mb-3' style='color: #fff1d1;background-color: #dab097;background-image: linear-gradient(315deg, #dab097 0%, #f1c56c 74%);'><div class='card-body'><h5 class='card-title'>GOLD</h5></div></div>");
+        } else if ($q1binputvalue == "11Better") {
+            $('#q1bresult').empty()
+            $('#q1bresult').html("");
+            $q1bfinalvalue = 20;
+            $('#q1bresult').append("<br/><div class='card mb-3' style='color: #d6d5d3;  background-color: #353333;background-image: linear-gradient(315deg, #353333 0%, #575555 74%);'><div class='card-body'><h5 class='card-title'>PLATINUM</h5></div></div>");
+        }
+
+
+        // For question2 Logic
+        if ($q2inputvalue > 5 && !($q2inputvalue > 7)) {
+            $('#q2result').empty()
+            $('#q2result').html("");
+            $q2finalvalue = 10;
+            $('#q2result').append("<br/><div class='card mb-3' style='color:#73726f;background: #E5E4E2;background: linear-gradient(to bottom, #E5E4E2 0%, #D6D5D3 100%);background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #E5E4E2), color-stop(100%, #D6D5D3));background: -webkit-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);background: -moz-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);background: -o-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);background: -ms-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#E5E4E2', endColorstr='#D6D5D3', GradientType=0);border: 1px solid #C7C6C4;box-shadow: inset 0 1px 0 #F4F3F1;-webkit-box-shadow: inset 0 1px 0 #F4F3F1;-moz-box-shadow: inset 0 1px 0 #F4F3F1;'><div class='card-body'><h5 class='card-title'>SILVER</h5></div></div>");
+        } else if ($q2inputvalue > 7 && !($q2inputvalue > 10)) {
+            $('#q2result').empty()
+            $('#q2result').html("");
+            $q2finalvalue = 15;
+            $('#q2result').append("<br/><div class='card mb-3' style='color: #fff1d1;background-color: #dab097;background-image: linear-gradient(315deg, #dab097 0%, #f1c56c 74%);'><div class='card-body'><h5 class='card-title'>GOLD</h5></div></div>");
+        } else if ($q2inputvalue > 10) {
+            $('#q2result').empty()
+            $('#q2result').html("");
+            $q2finalvalue = 20;
+            $('#q2result').append("<br/><div class='card mb-3' style='color: #d6d5d3;  background-color: #353333;background-image: linear-gradient(315deg, #353333 0%, #575555 74%);'><div class='card-body'><h5 class='card-title'>PLATINUM</h5></div></div>");
+        } else {
+            $('#q2result').empty()
+            $q2finalvalue = 0;
+            $('#q2result').html("You are below SILVER");
+        }
+
+        // For question3 Logic
+        if ($q3inputvalue > 10 && !($q3inputvalue > 20)) {
+            $('#q3result').empty()
+            $('#q3result').html("");
+            $q3finalvalue = 10;
+            $('#q3result').append("<br/><div class='card mb-3' style='color:#73726f;background: #E5E4E2;background: linear-gradient(to bottom, #E5E4E2 0%, #D6D5D3 100%);background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #E5E4E2), color-stop(100%, #D6D5D3));background: -webkit-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);background: -moz-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);background: -o-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);background: -ms-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#E5E4E2', endColorstr='#D6D5D3', GradientType=0);border: 1px solid #C7C6C4;box-shadow: inset 0 1px 0 #F4F3F1;-webkit-box-shadow: inset 0 1px 0 #F4F3F1;-moz-box-shadow: inset 0 1px 0 #F4F3F1;'><div class='card-body'><h5 class='card-title'>SILVER</h5></div></div>");
+        } else if ($q3inputvalue > 20 && !($q3inputvalue > 30)) {
+            $('#q3result').empty()
+            $('#q3result').html("");
+            $q3finalvalue = 15;
+            $('#q3result').append("<br/><div class='card mb-3' style='color: #fff1d1;background-color: #dab097;background-image: linear-gradient(315deg, #dab097 0%, #f1c56c 74%);'><div class='card-body'><h5 class='card-title'>GOLD</h5></div></div>");
+        } else if ($q3inputvalue > 30) {
+            $('#q3result').empty()
+            $('#q3result').html("");
+            $q3finalvalue = 20;
+            $('#q3result').append("<br/><div class='card mb-3' style='color: #d6d5d3;  background-color: #353333;background-image: linear-gradient(315deg, #353333 0%, #575555 74%);'><div class='card-body'><h5 class='card-title'>PLATINUM</h5></div></div>");
+        } else {
+            $('#q3result').empty()
+            $q3finalvalue = 0;
+            $('#q3result').html("You are below SILVER");
+        }
+
+        // For question4 Logic
+        if ($q4inputvalue > 50 && !($q4inputvalue > 70)) {
+            $('#q4result').empty()
+            $('#q4result').html("");
+            $q4finalvalue = 10;
+            $('#q4result').append("<br/><div class='card mb-3' style='color:#73726f;background: #E5E4E2;background: linear-gradient(to bottom, #E5E4E2 0%, #D6D5D3 100%);background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #E5E4E2), color-stop(100%, #D6D5D3));background: -webkit-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);background: -moz-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);background: -o-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);background: -ms-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#E5E4E2', endColorstr='#D6D5D3', GradientType=0);border: 1px solid #C7C6C4;box-shadow: inset 0 1px 0 #F4F3F1;-webkit-box-shadow: inset 0 1px 0 #F4F3F1;-moz-box-shadow: inset 0 1px 0 #F4F3F1;'><div class='card-body'><h5 class='card-title'>SILVER</h5></div></div>");
+        } else if ($q4inputvalue > 70 && !($q4inputvalue > 90)) {
+            $('#q4result').empty()
+            $('#q4result').html("");
+            $q4finalvalue = 15;
+            $('#q4result').append("<br/><div class='card mb-3' style='color: #fff1d1;background-color: #dab097;background-image: linear-gradient(315deg, #dab097 0%, #f1c56c 74%);'><div class='card-body'><h5 class='card-title'>GOLD</h5></div></div>");
+        } else if ($q4inputvalue > 90) {
+            $('#q4result').empty()
+            $('#q4result').html("");
+            $q4finalvalue = 20;
+            $('#q4result').append("<br/><div class='card mb-3' style='color: #d6d5d3;  background-color: #353333;background-image: linear-gradient(315deg, #353333 0%, #575555 74%);'><div class='card-body'><h5 class='card-title'>PLATINUM</h5></div></div>");
+        } else {
+            $('#q4result').empty()
+            $q4finalvalue = 0;
+            $('#q4result').html("You are below SILVER");
+        }
+
+        // For question5 Logic
+        if ($q5inputvalue == "Below Compliance") {
+            $('#q5result').empty()                
+            $q5finalvalue = 0;
+            $('#q5result').html("You are below SILVER");
+        } else if ($q5inputvalue == "Meet Compliance") {
+            $('#q5result').empty()
+            $('#q5result').html("");
+            $q5finalvalue = 10;
+            $('#q5result').append("<br/><div class='card mb-3' style='color:#73726f;background: #E5E4E2;background: linear-gradient(to bottom, #E5E4E2 0%, #D6D5D3 100%);background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #E5E4E2), color-stop(100%, #D6D5D3));background: -webkit-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);background: -moz-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);background: -o-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);background: -ms-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#E5E4E2', endColorstr='#D6D5D3', GradientType=0);border: 1px solid #C7C6C4;box-shadow: inset 0 1px 0 #F4F3F1;-webkit-box-shadow: inset 0 1px 0 #F4F3F1;-moz-box-shadow: inset 0 1px 0 #F4F3F1;'><div class='card-body'><h5 class='card-title'>SILVER</h5></div></div>");
+        } else if ($q5inputvalue == "Above/Beyond") {
+            $('#q5result').empty()
+            $('#q5result').html("");
+            $q5finalvalue = 15;
+            $('#q5result').append("<br/><div class='card mb-3' style='color: #fff1d1;background-color: #dab097;background-image: linear-gradient(315deg, #dab097 0%, #f1c56c 74%);'><div class='card-body'><h5 class='card-title'>GOLD</h5></div></div>");
+        } else if ($q5inputvalue == "Role Model") {
+            $('#q5result').empty()
+            $('#q5result').html("");
+            $q5finalvalue = 20;
+            $('#q5result').append("<br/><div class='card mb-3' style='color: #d6d5d3;  background-color: #353333;background-image: linear-gradient(315deg, #353333 0%, #575555 74%);'><div class='card-body'><h5 class='card-title'>PLATINUM</h5></div></div>");
+        }
+
+        // For question6 Logic
+        if ($q6inputvalue > 5 && !($q6inputvalue > 10)) {
+            $('#q6result').empty()
+            $('#q6result').html("");
+            $q6finalvalue = 10;
+            $('#q6result').append("<br/><div class='card mb-3' style='color:#73726f;background: #E5E4E2;background: linear-gradient(to bottom, #E5E4E2 0%, #D6D5D3 100%);background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #E5E4E2), color-stop(100%, #D6D5D3));background: -webkit-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);background: -moz-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);background: -o-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);background: -ms-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#E5E4E2', endColorstr='#D6D5D3', GradientType=0);border: 1px solid #C7C6C4;box-shadow: inset 0 1px 0 #F4F3F1;-webkit-box-shadow: inset 0 1px 0 #F4F3F1;-moz-box-shadow: inset 0 1px 0 #F4F3F1;'><div class='card-body'><h5 class='card-title'>SILVER</h5></div></div>");
+        } else if ($q6inputvalue > 10 && !($q6inputvalue > 20)) {
+            $('#q6result').empty()
+            $('#q6result').html("");
+            $q6finalvalue = 15;
+            $('#q6result').append("<br/><div class='card mb-3' style='color: #fff1d1;background-color: #dab097;background-image: linear-gradient(315deg, #dab097 0%, #f1c56c 74%);'><div class='card-body'><h5 class='card-title'>GOLD</h5></div></div>");
+        } else if ($q6inputvalue > 20) {
+            $('#q6result').empty()
+            $('#q6result').html("");
+            $q6finalvalue = 20;
+            $('#q6result').append("<br/><div class='card mb-3' style='color: #d6d5d3;  background-color: #353333;background-image: linear-gradient(315deg, #353333 0%, #575555 74%);'><div class='card-body'><h5 class='card-title'>PLATINUM</h5></div></div>");
+        } else {
+            $('#q6result').empty()
+            $q6finalvalue = 0;
+            $('#q6result').html("You are below SILVER");
+        }
+        // For question7 Logic
+        if ($q7inputvalue > 3 && !($q7inputvalue > 10)) {
+            $('#q7result').empty()
+            $('#q7result').html("");
+            $q7finalvalue = 10;
+            $('#q7result').append("<br/><div class='card mb-3' style='color:#73726f;background: #E5E4E2;background: linear-gradient(to bottom, #E5E4E2 0%, #D6D5D3 100%);background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #E5E4E2), color-stop(100%, #D6D5D3));background: -webkit-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);background: -moz-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);background: -o-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);background: -ms-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#E5E4E2', endColorstr='#D6D5D3', GradientType=0);border: 1px solid #C7C6C4;box-shadow: inset 0 1px 0 #F4F3F1;-webkit-box-shadow: inset 0 1px 0 #F4F3F1;-moz-box-shadow: inset 0 1px 0 #F4F3F1;'><div class='card-body'><h5 class='card-title'>SILVER</h5></div></div>");
+        } else if ($q7inputvalue > 10 && !($q7inputvalue > 15)) {
+            $('#q7result').empty()
+            $('#q7result').html("");
+            $q7finalvalue = 15;
+            $('#q7result').append("<br/><div class='card mb-3' style='color: #fff1d1;background-color: #dab097;background-image: linear-gradient(315deg, #dab097 0%, #f1c56c 74%);'><div class='card-body'><h5 class='card-title'>GOLD</h5></div></div>");
+        } else if ($q7inputvalue > 15) {
+            $('#q7result').empty()
+            $('#q7result').html("");
+            $q7finalvalue = 20; 
+            $('#q7result').append("<br/><div class='card mb-3' style='color: #d6d5d3;  background-color: #353333;background-image: linear-gradient(315deg, #353333 0%, #575555 74%);'><div class='card-body'><h5 class='card-title'>PLATINUM</h5></div></div>");
+        } else {
+            $('#q7result').empty()
+            $q7finalvalue = 0;
+            $('#q7result').html("You are below SILVER");
+        }
+        // For question8 Logic
+        if ($q8inputvalue > 5 && !($q8inputvalue > 10)) {
+            $('#q8result').empty()
+            $('#q8result').html("");
+            $q8finalvalue = 10;
+            $('#q8result').append("<br/><div class='card mb-3' style='color:#73726f;background: #E5E4E2;background: linear-gradient(to bottom, #E5E4E2 0%, #D6D5D3 100%);background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #E5E4E2), color-stop(100%, #D6D5D3));background: -webkit-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);background: -moz-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);background: -o-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);background: -ms-linear-gradient(top, #E5E4E2 0%, #D6D5D3 100%);filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#E5E4E2', endColorstr='#D6D5D3', GradientType=0);border: 1px solid #C7C6C4;box-shadow: inset 0 1px 0 #F4F3F1;-webkit-box-shadow: inset 0 1px 0 #F4F3F1;-moz-box-shadow: inset 0 1px 0 #F4F3F1;'><div class='card-body'><h5 class='card-title'>SILVER</h5></div></div>");
+        } else if ($q8inputvalue > 10 && !($q8inputvalue > 20)) {
+            $('#q8result').empty()
+            $('#q8result').html("");
+            $q8finalvalue = 15;
+            $('#q8result').append("<br/><div class='card mb-3' style='color: #fff1d1;background-color: #dab097;background-image: linear-gradient(315deg, #dab097 0%, #f1c56c 74%);'><div class='card-body'><h5 class='card-title'>GOLD</h5></div></div>");
+        } else if ($q8inputvalue > 20) {
+            $('#q8result').empty()
+            $('#q8result').html("");
+            $q8finalvalue = 20;
+            $('#q8result').append("<br/><div class='card mb-3' style='color: #d6d5d3;background-color: #353333;background-image: linear-gradient(315deg, #353333 0%, #575555 74%);'><div class='card-body'><h5 class='card-title'>PLATINUM</h5></div></div>");
+        } else {
+            $('#q8result').empty()
+            $q8finalvalue = 0;
+            $('#q8result').html("You are below SILVER");
+        }
+
+
+        //Final Average Result Calculation
+        $averagevalue = ($q1finalvalue + $q2finalvalue + $q3finalvalue + $q4finalvalue + $q5finalvalue + $q6finalvalue + $q7finalvalue + $q8finalvalue + $q1bfinalvalue)
+
+        if ($averagevalue <= 71) {
+            $('#results').html("<div style='text-align:center;'><h2>Overall BeingWISE Rating</h2></div><div class='results'><br /><h1 class='display-4' style='color: white;text-align: center;'> You Are Below Silver </h1><br /></div> ")
+        } else if ($averagevalue > 71 && $averagevalue <= 107) {
+            $('#results').html("<div style='text-align:center;'><h2>Overall BeingWISE Rating</h2></div><div class='results'><br /><h1 class='display-4' style='color: white;text-align: center;'> Silver </h1><br /></div> ")
+        } else if ($averagevalue > 108 && $averagevalue <= 143) {
+            $('#results').html("<div style='text-align:center;'><h2>Overall BeingWISE Rating</h2></div><div class='results'><br /><h1 class='display-4' style='color: white;text-align: center;'> Gold </h1><br /></div> ")
+        } else if ($averagevalue >= 143) {
+            $('#results').html("<div style='text-align:center;'><h2>Overall BeingWISE Rating</h2></div><div class='results'><br /><h1 class='display-4' style='color: white;text-align: center;'> Platinum </h1><br /></div> ")
+        }
+        $(document).scrollTop($(document).height()); 
+
+        $('#report').show();
+
+
+    };
+</script>
+</head>
+<body>
+  <nav class="navbar fixed-top navbar-dark bg-dark">
+    <a class="navbar-brand" href="#"><label style="color:aliceblue" class="lead">Being<b>WISE</b>(<i><b>W</b>omen
+                <b>I</b>nnovators, <b>S</b>ocial <b>L</b>eaders and <b>E</b>ntrepreneurs</i>)</label></a>
+</nav>
+
+<div class="jumbotron" style="color: aliceblue">
+    <br /><br />
+    <center>
+        <h1 class="display-4">BeingWISE-R (Ready) Framework</h1>
+        <h1 class="display-5">Self Assesment Tool</h1>
+    </center>
+
+
+</div>
+<div class="container">
+  <form>
+    <div class="form-row">
+        <div class="col-md-5 mb-6">
+            <div class="form-group">
+            <b><label class="lead" for="organizationname">Organization Name</label></b>
+            <input type="text" class="form-control" id="organizationname" placeholder="Enter Organization Name">
+     
+            </div>
+        </div>
+        
+        
+        <div class="col-md-3 mb-3">
+            <div class="form-group">
+            <b><label class="lead" for="reportdate">Date</label></b>
+            <input type="datetime-local" class="form-control" id="reportdate" disabled>
+            </div>
+        </div>
+    </div>            
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <div class="form-group">
+            <b><label class="lead" for="organizationcontact">Contact Person</label></b>
+            <input type="text" class="form-control" id="organizationcontact" placeholder="HR head/BU head/diversity lead">
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="form-group">
+            <b><label class="lead" for="nofemployees">No. Of Employees</label></b>
+            <input type="number" class="form-control" id="nofemployees">
+            </div>
+        </div>
+    </div>
+    
+  </form>
+
+</div>
+<hr style='border: 1px solid rgb(0, 0, 0); border-radius: 1px;'><br/>
+
+<div id="questionsdb" class="container" style="background-color:#FFFFFF;">
+
+<div class="row justify-content-md-left">
+    <div class="col-sm-6" style="background-color:none;">
+        Parameter
+    </div>
+    <div class="col-sm-2">
+        Value
+    </div>
+    <div class="col-sm-2">
+        Parameter Rating
+    </div>
+    <div class="col-sm-2">
+      
+  </div>
+</div>
+<hr style='border: 1px solid rgb(0, 0, 0); border-radius: 1px;'>
+<div id="q1" class="row justify-content-md-left">
+    <div class="col-sm-6" style="background-color:none;">
+        <b>
+            <p class="lead"> 1.(a) (in%) Women in tech workforce /
+                Total workforce </p>
+        </b>
+    </div>
+    <div class="col-sm-2">
+        <input id="q1slider" class="font-weight-bold text-primary lead" type="number" min="0" max="100"
+            value="0" />
+        <span class="font-weight-bold text-primary lead">%</span>
+    </div>
+    <div class="col-sm-2" style="background-color:none;" id="q1result"></div>
+</div>
+<div id="q1b" class="row justify-content-md-left">
+    <div class="col-sm-6" style="background-color:none;">
+        <b>
+            <p class="lead"> 1.(b) Retention of women at par with
+                general employee population at all levels</p>
+        </b>
+
+    </div>
+    <div class="col-sm-2">
+        <form>
+            <div class="radio">
+                <label><input type="radio" class="lead" name="optradio1" checked value="Lower"> Lower</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" class="lead" name="optradio1" value="Same"> Same</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" class="lead" name="optradio1" value="10Better"> Upto 10% higher</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" class="lead" name="optradio1" value="11Better"> More than 10%</label>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-2" style="background-color:none;" id="q1bresult"></div>
+    <div class="col-sm-2">
+        <p><span class="blink" data-toggle="tooltip"><a data-toggle="tooltip" data-html="true" title="<b>Women in tech workforce</b><br><em>(%) Number of women in workforce / Total workforce in your org</em><br><b>Numerical value:</b><em>Company “A” has 300 female employees out of its total employee strength of <b>1000</b>. The <b>% </b>of representation will be <b>300/1000 x100 = 30</b><br>(1b) Retention of women at par with general employee population at all levels in the past one year </em>"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40"><path fill-rule="evenodd" d="M12 2.5c-3.81 0-6.5 2.743-6.5 6.119 0 1.536.632 2.572 1.425 3.56.172.215.347.422.527.635l.096.112c.21.25.427.508.63.774.404.531.783 1.128.995 1.834a.75.75 0 01-1.436.432c-.138-.46-.397-.89-.753-1.357a18.354 18.354 0 00-.582-.714l-.092-.11c-.18-.212-.37-.436-.555-.667C4.87 12.016 4 10.651 4 8.618 4 4.363 7.415 1 12 1s8 3.362 8 7.619c0 2.032-.87 3.397-1.755 4.5-.185.23-.375.454-.555.667l-.092.109c-.21.248-.405.481-.582.714-.356.467-.615.898-.753 1.357a.75.75 0 01-1.437-.432c.213-.706.592-1.303.997-1.834.202-.266.419-.524.63-.774l.095-.112c.18-.213.355-.42.527-.634.793-.99 1.425-2.025 1.425-3.561C18.5 5.243 15.81 2.5 12 2.5zM9.5 21.75a.75.75 0 01.75-.75h3.5a.75.75 0 010 1.5h-3.5a.75.75 0 01-.75-.75zM8.75 18a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5z"></path></svg></a></span></p>    
+    </div>
+    
+    <div class="col-sm-4">
+    <label class="text" for="com1">Comments</label>
+    <textarea id="com1" class="md-textarea form-control" rows="3" ></textarea>
+
+    </div>
+    
+</div>
+
+
+<hr style='border: 1px solid rgb(0, 0, 0); border-radius: 1px;'>
+<div id="q2" class="row justify-content-md-left">
+    <div class="col-sm-6" style="background-color:none;">
+        <b>
+            <p class="lead"> 2. (in%) Back-to-work program: % of
+                women hires / total hires </p>
+        </b>
+    </div>
+    <div class="col-sm-2">
+        <input id="q2slider" class="font-weight-bold text-primary lead" type="number" min="0" max="100"
+            value="0" />
+        <span class="font-weight-bold text-primary lead">%</span>
+    </div>
+    <div class="col-sm-2" style="background-color:none;" id="q2result"></div>
+    <div class="col-sm-2">
+      <p><span class="blink" data-toggle="tooltip"><a data-toggle="tooltip" data-html="true" title="<b>Tracking success of Back-to-Work programs</b><br><b>(%)</b><em>Number of women re-hired / Total recruitments that year</em><br><b>Numerical value:</b> <em> Company “A” hires 10 women employees under its back-to-work program. There are 150 employees hired that year. <b> 10/150x100 = 6.66%  </b></em>"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40"><path fill-rule="evenodd" d="M12 2.5c-3.81 0-6.5 2.743-6.5 6.119 0 1.536.632 2.572 1.425 3.56.172.215.347.422.527.635l.096.112c.21.25.427.508.63.774.404.531.783 1.128.995 1.834a.75.75 0 01-1.436.432c-.138-.46-.397-.89-.753-1.357a18.354 18.354 0 00-.582-.714l-.092-.11c-.18-.212-.37-.436-.555-.667C4.87 12.016 4 10.651 4 8.618 4 4.363 7.415 1 12 1s8 3.362 8 7.619c0 2.032-.87 3.397-1.755 4.5-.185.23-.375.454-.555.667l-.092.109c-.21.248-.405.481-.582.714-.356.467-.615.898-.753 1.357a.75.75 0 01-1.437-.432c.213-.706.592-1.303.997-1.834.202-.266.419-.524.63-.774l.095-.112c.18-.213.355-.42.527-.634.793-.99 1.425-2.025 1.425-3.561C18.5 5.243 15.81 2.5 12 2.5zM9.5 21.75a.75.75 0 01.75-.75h3.5a.75.75 0 010 1.5h-3.5a.75.75 0 01-.75-.75zM8.75 18a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5z"></path></svg></a></span></p>    
+  </div>
+    <div class="col-sm-4">
+      <label class="text" for="com1">Comments</label>
+      <textarea id="com2" class="md-textarea form-control" rows="3" ></textarea>
+  
+      </div>
+</div>
+
+<hr style='border: 1px solid rgb(0, 0, 0); border-radius: 1px;'>
+<div id="q3" class="row justify-content-md-left">
+    <div class="col-sm-6" style="background-color:none;">
+        <b>
+            <p class="lead"> 3. (in%) Women on company board / total
+                number of board members</p>
+        </b>
+    </div>
+    <div class="col-sm-2">
+        <input id="q3slider" class="font-weight-bold text-primary lead" type="number" min="0" max="100"
+            value="0" />
+        <span class="font-weight-bold text-primary lead">%</span>
+    </div>
+    <div class="col-sm-2" style="background-color:none;" id="q3result"></div>
+    <div class="col-sm-2">
+      <p><span class="blink" data-toggle="tooltip"><a data-toggle="tooltip" data-html="true" title="<b>Women in top leadership roles (CXOs, board director, board member, etc)</b><br><b>(%)</b><em> Number of women in top leadership roles / Total number of leaders</em><br><b>Numerical value:</b> <em>Company Y has 1 female director and a woman CIO. Hence there are 2 women in leadership roles. It has a total of 24 senior leaders and board members.  <b>2/24x100 = 8%</b> </em>"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40"><path fill-rule="evenodd" d="M12 2.5c-3.81 0-6.5 2.743-6.5 6.119 0 1.536.632 2.572 1.425 3.56.172.215.347.422.527.635l.096.112c.21.25.427.508.63.774.404.531.783 1.128.995 1.834a.75.75 0 01-1.436.432c-.138-.46-.397-.89-.753-1.357a18.354 18.354 0 00-.582-.714l-.092-.11c-.18-.212-.37-.436-.555-.667C4.87 12.016 4 10.651 4 8.618 4 4.363 7.415 1 12 1s8 3.362 8 7.619c0 2.032-.87 3.397-1.755 4.5-.185.23-.375.454-.555.667l-.092.109c-.21.248-.405.481-.582.714-.356.467-.615.898-.753 1.357a.75.75 0 01-1.437-.432c.213-.706.592-1.303.997-1.834.202-.266.419-.524.63-.774l.095-.112c.18-.213.355-.42.527-.634.793-.99 1.425-2.025 1.425-3.561C18.5 5.243 15.81 2.5 12 2.5zM9.5 21.75a.75.75 0 01.75-.75h3.5a.75.75 0 010 1.5h-3.5a.75.75 0 01-.75-.75zM8.75 18a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5z"></path></svg></a></span></p>    
+  </div>
+    <div class="col-sm-4">
+      <label class="text" for="com1">Comments</label>
+      <textarea id="com3" class="md-textarea form-control" rows="3" ></textarea>
+  
+      </div>
+</div>
+
+<hr style='border: 1px solid rgb(0, 0, 0); border-radius: 1px;'>
+<div id="q4" class="row justify-content-md-left">
+
+    <div class="col-sm-6" style="background-color:none;">
+        <b>
+            <p class="lead">4. (in%) Leaders trained in BeingWISE,
+                LGBTQ, PWD (people with disability) / total
+                number of leaders</p>
+        </b>
+    </div>
+    <div class="col-sm-2">
+        <input id="q4slider" class="font-weight-bold text-primary lead" type="number" min="0" max="100"
+            value="0" />
+        <span class="font-weight-bold text-primary lead">%</span>
+    </div>
+    <div class="col-sm-2" style="background-color:none;" id="q4result"></div>
+    <div class="col-sm-2">
+      <p><span class="blink" data-toggle="tooltip"><a data-toggle="tooltip" data-html="true" title="<b>Leaders trained on diversity including physical disability (PWD) and LGBTQ</b><br><em><b>(%)</b> Number of leaders trained in BeingWISE-LGBTQ-PWD / Total number of leaders<br><b>Numerical value:</b>  Company “I” has 40 leaders. Of that 30 have taken trainings on various aspects of diversity. <b>30/40x100 =75%</b> </em>"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40"><path fill-rule="evenodd" d="M12 2.5c-3.81 0-6.5 2.743-6.5 6.119 0 1.536.632 2.572 1.425 3.56.172.215.347.422.527.635l.096.112c.21.25.427.508.63.774.404.531.783 1.128.995 1.834a.75.75 0 01-1.436.432c-.138-.46-.397-.89-.753-1.357a18.354 18.354 0 00-.582-.714l-.092-.11c-.18-.212-.37-.436-.555-.667C4.87 12.016 4 10.651 4 8.618 4 4.363 7.415 1 12 1s8 3.362 8 7.619c0 2.032-.87 3.397-1.755 4.5-.185.23-.375.454-.555.667l-.092.109c-.21.248-.405.481-.582.714-.356.467-.615.898-.753 1.357a.75.75 0 01-1.437-.432c.213-.706.592-1.303.997-1.834.202-.266.419-.524.63-.774l.095-.112c.18-.213.355-.42.527-.634.793-.99 1.425-2.025 1.425-3.561C18.5 5.243 15.81 2.5 12 2.5zM9.5 21.75a.75.75 0 01.75-.75h3.5a.75.75 0 010 1.5h-3.5a.75.75 0 01-.75-.75zM8.75 18a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5z"></path></svg></a></span></p>    
+  </div>
+    <div class="col-sm-4">
+      <label class="text" for="com1">Comments</label>
+      <textarea id="com4" class="md-textarea form-control" rows="3" ></textarea>
+  
+      </div>
+</div>        
+<hr style='border: 1px solid rgb(0, 0, 0); border-radius: 1px;'>
+<div id="q5" class="row justify-content-md-left">
+    <div class="col-sm-6" style="background-color:none;">
+        <b>
+            <p class="lead">5. Adherence to basic compliances such
+                as maternity leave, crèche, security for
+                women employees to return home after 8 pm, etc</p>
+        </b>
+    </div>
+    <div class="col-sm-2">
+        <form>
+            
+            <div class="radio">
+                <label><input type="radio" class="lead" name="optradio" checked value="Below Compliance"> Below Compliance</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" class="lead" name="optradio" value="Meet Compliance"> Meet
+                    Compliance</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" class="lead" name="optradio" value="Above/Beyond">
+                    Above/Beyond
+                </label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" class="lead" name="optradio" value="Role Model"> Role
+                    Model</label>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-2" style="background-color:none;" id="q5result"></div>
+    <div class="col-sm-2">
+      <p><span class="blink" data-toggle="tooltip"><a data-toggle="tooltip" data-html="true" title="<b>Adherence to basic compliance </b><br><em>Please refer to BeingWISE framework for details on compliances<br><b>Numerical value:</b> Requires compliance in each of the standards to move to the next certification</em>"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40"><path fill-rule="evenodd" d="M12 2.5c-3.81 0-6.5 2.743-6.5 6.119 0 1.536.632 2.572 1.425 3.56.172.215.347.422.527.635l.096.112c.21.25.427.508.63.774.404.531.783 1.128.995 1.834a.75.75 0 01-1.436.432c-.138-.46-.397-.89-.753-1.357a18.354 18.354 0 00-.582-.714l-.092-.11c-.18-.212-.37-.436-.555-.667C4.87 12.016 4 10.651 4 8.618 4 4.363 7.415 1 12 1s8 3.362 8 7.619c0 2.032-.87 3.397-1.755 4.5-.185.23-.375.454-.555.667l-.092.109c-.21.248-.405.481-.582.714-.356.467-.615.898-.753 1.357a.75.75 0 01-1.437-.432c.213-.706.592-1.303.997-1.834.202-.266.419-.524.63-.774l.095-.112c.18-.213.355-.42.527-.634.793-.99 1.425-2.025 1.425-3.561C18.5 5.243 15.81 2.5 12 2.5zM9.5 21.75a.75.75 0 01.75-.75h3.5a.75.75 0 010 1.5h-3.5a.75.75 0 01-.75-.75zM8.75 18a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5z"></path></svg></a></span></p>    
+  </div>
+    <div class="col-sm-4">
+      <label class="text" for="com1">Comments</label>
+      <textarea id="com5" class="md-textarea form-control" rows="3" ></textarea>
+  
+      </div>
+</div>
+
+<hr style='border: 1px solid rgb(0, 0, 0); border-radius: 1px;'>
+<div id="q6" class="row justify-content-md-left">
+    <div class="col-sm-6" style="background-color:none;">
+        <b>
+            <p class="lead">6. (%) Business given to women-led
+                vendors / total business given to vendors</p>
+        </b>
+    </div>
+    <div class="col-sm-2">
+        <input id="q6slider" class="font-weight-bold text-primary lead" type="number" min="0" max="100"
+            value="0" />
+        <span class="font-weight-bold text-primary lead">%</span>
+    </div>
+    <div class="col-sm-2" style="background-color:none;" id="q6result"></div>
+    <div class="col-sm-2">
+      <p><span class="blink" data-toggle="tooltip"><a data-toggle="tooltip" data-html="true" title="<b>Support to women-led vendors</b><br><em><b>(%)</b><em>Spend on business given to women-led vendors / Total business given to vendors<br><b>Numerical value:</b> Company ‘I’ spends a total of INR 20 lakh through its vendors. Of that INR 1 lakh is spent through women-led vendors. <b>1/20x100=5% </b></em>"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40"><path fill-rule="evenodd" d="M12 2.5c-3.81 0-6.5 2.743-6.5 6.119 0 1.536.632 2.572 1.425 3.56.172.215.347.422.527.635l.096.112c.21.25.427.508.63.774.404.531.783 1.128.995 1.834a.75.75 0 01-1.436.432c-.138-.46-.397-.89-.753-1.357a18.354 18.354 0 00-.582-.714l-.092-.11c-.18-.212-.37-.436-.555-.667C4.87 12.016 4 10.651 4 8.618 4 4.363 7.415 1 12 1s8 3.362 8 7.619c0 2.032-.87 3.397-1.755 4.5-.185.23-.375.454-.555.667l-.092.109c-.21.248-.405.481-.582.714-.356.467-.615.898-.753 1.357a.75.75 0 01-1.437-.432c.213-.706.592-1.303.997-1.834.202-.266.419-.524.63-.774l.095-.112c.18-.213.355-.42.527-.634.793-.99 1.425-2.025 1.425-3.561C18.5 5.243 15.81 2.5 12 2.5zM9.5 21.75a.75.75 0 01.75-.75h3.5a.75.75 0 010 1.5h-3.5a.75.75 0 01-.75-.75zM8.75 18a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5z"></path></svg></a></span></p>    
+  </div>
+    <div class="col-sm-4">
+      <label class="text" for="com1">Comments</label>
+      <textarea id="com6" class="md-textarea form-control" rows="3" ></textarea>
+  
+      </div>
+</div>
+
+<hr style='border: 1px solid rgb(0, 0, 0); border-radius: 1px;'>
+<div id="q7" class="row justify-content-md-left">
+    <div class="col-sm-6" style="background-color:none;">
+        <b>
+            <p class="lead">7. (Number) Women-led startups supported
+                (like funding, mentorship, biz development)
+            </p>
+        </b>
+    </div>
+    <div class="col-sm-2">
+        <input id="q7slider" class="font-weight-bold text-primary lead" type="number" min="0" max="100"
+            value="0" />
+        <!-- <span class="font-weight-bold text-primary lead
+                q7valueSpan"></span> -->
+    </div>
+    <div class="col-sm-2" style="background-color:none;" id="q7result"></div>
+    <div class="col-sm-2">
+      <p><span class="blink" data-toggle="tooltip"><a data-toggle="tooltip" data-html="true" title="<b>Support to women-led startups</b><br><em><b>(By number)</b> Women-led startups supported through funding, mentorship, Biz development, etc<br><b>Numerical value:</b> Company ‘I’ funded and mentored 3 early stage startups that year. It will be calculated as <b>3 </b></em>"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40"><path fill-rule="evenodd" d="M12 2.5c-3.81 0-6.5 2.743-6.5 6.119 0 1.536.632 2.572 1.425 3.56.172.215.347.422.527.635l.096.112c.21.25.427.508.63.774.404.531.783 1.128.995 1.834a.75.75 0 01-1.436.432c-.138-.46-.397-.89-.753-1.357a18.354 18.354 0 00-.582-.714l-.092-.11c-.18-.212-.37-.436-.555-.667C4.87 12.016 4 10.651 4 8.618 4 4.363 7.415 1 12 1s8 3.362 8 7.619c0 2.032-.87 3.397-1.755 4.5-.185.23-.375.454-.555.667l-.092.109c-.21.248-.405.481-.582.714-.356.467-.615.898-.753 1.357a.75.75 0 01-1.437-.432c.213-.706.592-1.303.997-1.834.202-.266.419-.524.63-.774l.095-.112c.18-.213.355-.42.527-.634.793-.99 1.425-2.025 1.425-3.561C18.5 5.243 15.81 2.5 12 2.5zM9.5 21.75a.75.75 0 01.75-.75h3.5a.75.75 0 010 1.5h-3.5a.75.75 0 01-.75-.75zM8.75 18a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5z"></path></svg></a></span></p>    
+  </div>
+    <div class="col-sm-4">
+      <label class="text" for="com7">Comments</label>
+      <textarea id="com1" class="md-textarea form-control" rows="3" ></textarea>
+  
+      </div>
+</div>
+
+<hr style='border: 1px solid rgb(0, 0, 0); border-radius: 1px;'>
+<div id="q8" class="row justify-content-md-left">
+    <div class="col-sm-6" style="background-color:none;">
+        <b>
+            <p class="lead">
+                8. (%) Girls (school level) and women (technical
+                researchers for higher education) trained in
+                STEM / total workforce of the organization
+            </p>
+        </b>
+    </div>
+    <div class="col-sm-2">
+        <input id="q8slider" class="font-weight-bold text-primary lead" type="number" min="0" max="100"
+            value="0" />
+        <span class="font-weight-bold text-primary lead">%</span>
+    </div>
+    <div class="col-sm-2" style="background-color:none;" id="q8result"></div>
+    <div class="col-sm-2">
+      <p><span class="blink" data-toggle="tooltip"><a data-toggle="tooltip" data-html="true" title="<b>Women trained in STEM (science, technology, engineering, math)</b><br><em><b>(%)</b> Number of women trained in STEM / Total workforce of the organization.It can be girls in school/college, higher education or women technical researchers <br><b>Numerical value:</b> The organization has trained 1100 schoolgirls on STEM in 2019. It has total employee base of 10000. It is <b>1100/10000x100: 11% </b></em>"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40"><path fill-rule="evenodd" d="M12 2.5c-3.81 0-6.5 2.743-6.5 6.119 0 1.536.632 2.572 1.425 3.56.172.215.347.422.527.635l.096.112c.21.25.427.508.63.774.404.531.783 1.128.995 1.834a.75.75 0 01-1.436.432c-.138-.46-.397-.89-.753-1.357a18.354 18.354 0 00-.582-.714l-.092-.11c-.18-.212-.37-.436-.555-.667C4.87 12.016 4 10.651 4 8.618 4 4.363 7.415 1 12 1s8 3.362 8 7.619c0 2.032-.87 3.397-1.755 4.5-.185.23-.375.454-.555.667l-.092.109c-.21.248-.405.481-.582.714-.356.467-.615.898-.753 1.357a.75.75 0 01-1.437-.432c.213-.706.592-1.303.997-1.834.202-.266.419-.524.63-.774l.095-.112c.18-.213.355-.42.527-.634.793-.99 1.425-2.025 1.425-3.561C18.5 5.243 15.81 2.5 12 2.5zM9.5 21.75a.75.75 0 01.75-.75h3.5a.75.75 0 010 1.5h-3.5a.75.75 0 01-.75-.75zM8.75 18a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5z"></path></svg></a></span></p>    
+  </div>
+    <div class="col-sm-4">
+      <label class="text" for="com8">Comments</label>
+      <textarea id="com1" class="md-textarea form-control" rows="3" ></textarea>
+  
+      </div>
+</div>
+
+<hr style='border: 1px solid rgb(0, 0, 0); border-radius: 1px;'>
+
+
+<center>
+    <button id="submit" class="btn btn-primary" style="background-color:black;" onclick="evaluateresults()">Show BeingWISE Score</button>
+</center>
+
+
+
+</div>
+<br />
+<div id="results">
+<div></div>
+</div>
+<br />
+<center><button id="report" class="btn btn-primary" style="background-color:black;" onclick="window.print()">Print Report</button></center>
+<footer class="footer">
+<div class="container">
+    <span class="text-muted">© 2020 Copyright: BeingWISE</span>
+</div>
+</footer>
+
+
+
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
+
+</body>
+</html>
