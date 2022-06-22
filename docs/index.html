@@ -269,6 +269,11 @@ background-size:16px 16px;
    </script>
 </head>
 <body>    
+    <script type="text/javascript">
+            var AvaamoChatBot=function(t){function o(t,o){var n=document.createElement("script");n.setAttribute("src",t),n.setAttribute("id","avm-web-channel"),n.onload=o,document.body.appendChild(n)}return this.options=t||{},this.load=function(t){o(this.options.url,function(){window.Avaamo.addFrame(),t&&"function"==typeof(t)&&t(window.Avaamo)})},this};
+              var chatBox = new AvaamoChatBot({url: 'https://c0.avaamo.com/web_channels/7e422bcf-d068-4284-a25d-3c86aa648d91?action=demo&banner=true&banner_text=+&banner_title=This+is+how+the+chat+agent+shows+up&controller=web_channels&demo=true'});
+            chatBox.load();
+          </script>
     <nav class="navbar fixed-top navbar-dark bg-dark">        
         <a class="navbar-brand" href="#"><label style="color:aliceblue" class="lead">Being<b>WISE</b> - <i><b>W</b>omen <b>I</b>nnovators, <b>S</b>ocial <b>L</b>eaders</i></label></a>        
       </nav>   
